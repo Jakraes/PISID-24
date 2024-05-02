@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #283593; /* Dark blue background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+}
+
+.logo-container img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 100px; /* Adjust size accordingly */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label,
+.login-form input,
+.login-form button {
+    margin-bottom: 10px;
+}
+
+.login-form input,
+.login-form button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    background-color: #6200ea; /* Purple button */
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.remember-me-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.remember-me-container input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.forgot-password {
+    display: block;
+    text-align: right;
+    margin-bottom: 10px;
+    color: #6200ea; /* Matching the button color */
+    text-decoration: none;
+}

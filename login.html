@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="styles.css">
-    </head>
-    <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Tech Mice Logo">
+        </div>
+        <form action="#" method="POST" class="login-form">
+            <label for="username">Username *</label>
+            <input type="text" id="username" name="username" required>
 
-    </body>
+            <label for="password">Password *</label>
+            <input type="password" id="password" name="password" required>
+
+            <div class="remember-me-container">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Remember me</label>
+            </div>
+
+            <a href="#" class="forgot-password">Forgot password?</a>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
 </html>
+
