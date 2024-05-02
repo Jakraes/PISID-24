@@ -6,12 +6,12 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="form-container">
+    <div class="general-container"">
         <div class="logo-container">
             <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
         </div>
         <h1>Adicionar Odor</h1>
-        <form action="submit-odor.php" method="post" onsubmit="return confirmarGravacao()">
+        <form action="submit-odor.php" method="post" onsubmit="return confirmarGravacao()" class="form-container">
             <input type="text" id="nome" name="nome" placeholder="Nome do Odor" required>
             <input type="number" id="sala" name="sala" placeholder="Número da Sala" required>
             <div class="action-buttons">
