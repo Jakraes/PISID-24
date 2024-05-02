@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Odor - TECH MICE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
+        </div>
+        <h1>Adicionar Odor</h1>
+        <form action="submit-odor.php" method="post" onsubmit="return confirmarGravacao()">
+            <input type="text" id="nome" name="nome" placeholder="Nome do Odor" required>
+            <input type="number" id="sala" name="sala" placeholder="Número da Sala" required>
+            <div class="action-buttons">
+                <button type="button" onclick="voltar()">Voltar</button>
+                <button type="submit" name="action" value="Gravar Odor">Gravar Odor</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function voltar() {
+            window.history.back();
+        }
+
+        function confirmarGravacao() {
+            var confirmado = confirm('Você confirma a gravação deste odor?');
+            if (confirmado) {
+                alert('Gravação confirmada!');
+            }
+            return confirmado;
+        }
+    </script>
+</body>
+</html>

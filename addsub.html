@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar substancia - TECH MICE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
+        </div>
+        <h1>Adicionar substancia</h1>
+        <form action="submit-substancia.php" method="post" onsubmit="return confirmarGravacao()">
+            <input type="text" id="nome" name="nome" placeholder="Nome" required>
+            <input type="number" id="sala" name="sala" placeholder="Número de ratos" required>
+            <div class="action-buttons">
+                <button type="button" onclick="voltar()">Voltar</button>
+                <button type="submit" name="action" value="Gravar substancia">Gravar substancia</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function voltar() {
+            window.history.back();
+        }
+
+        function confirmarGravacao() {
+            var confirmado = confirm('Você confirma a gravação desta substancia?');
+            if (confirmado) {
+                alert('Gravação confirmada!');
+            }
+            return confirmado;
+        }
+    </script>
+</body>
+</html>
