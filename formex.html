@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Registar Experiência - TECH MICE</title>
+    <title>Registrar Experiência - TECH MICE</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -10,14 +10,14 @@
         <div class="logo-container">
             <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
         </div>
-        <h1>Registar Experiência</h1>
+        <h1>Registrar Experiência</h1>
         <form action="submit-experience.php" method="post" onsubmit="return confirm('Tem certeza que deseja gravar a experiência?')">
             <input type="text" id="descricao" name="descricao" placeholder="Descrição da experiência" required>
             <input type="number" id="numero-ratos" name="numero-ratos" placeholder="Número de Ratos" required>
             <input type="number" id="limite-ratos-sala" name="limite-ratos-sala" placeholder="Limite de Ratos por Sala" required>
             <input type="number" id="segundos-sem-movimento" name="segundos-sem-movimento" placeholder="Segundos Sem Movimento" required>
-            <input type="text" id="temperatura-ideal" name="temperatura-ideal" placeholder="Temperatura Ideal" required>
-            <input type="text" id="variacao-temperatura-maxima" name="variacao-temperatura-maxima" placeholder="Variação de Temperatura Máxima" required>
+            <input type="text" id="temperatura-ideal" name="temperatura-ideal" placeholder="Temperatura Ideal" pattern="\d+(,\d{1,2})?" title="Use números, podendo usar vírgula para separar até duas casas decimais." required>
+            <input type="text" id="variacao-temperatura-maxima" name="variacao-temperatura-maxima" placeholder="Variação de Temperatura Máxima" pattern="\d+(,\d{1,2})?" title="Use números, podendo usar vírgula para separar até duas casas decimais." required>
             <div class="buttons">
                 <button type="submit">Gravar Experiência</button>
                 <button type="button" onclick="window.location.href='addodor.html'">Adicionar Odor</button>
@@ -25,12 +25,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        function confirmSubmit() {
-            return confirm('Tem certeza que deseja gravar a experiência?');
-        }
-    </script>
 </body>
 </html>
-
