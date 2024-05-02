@@ -1,32 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Login - TECH MICE</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="login-container">
         <div class="logo-container">
-            <img src="logo.jpeg" alt="Tech Mice Logo">
+            <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
         </div>
-        <form action="#" method="POST" class="login-form">
-            <label for="username">Username *</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password *</label>
-            <input type="password" id="password" name="password" required>
-
-            <div class="remember-me-container">
-                <input type="checkbox" id="remember-me" name="remember-me">
-                <label for="remember-me">Remember me</label>
+        <h1>TECH MICE</h1>
+        <form action="#" method="post">
+            <input type="text" id="username" name="username" placeholder="Nome de utilizador" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <div class="checkbox-container">
+                <input type="checkbox" id="remember-me">
+                <label for="remember-me">Lembrar de mim?</label>
             </div>
-
-            <a href="#" class="forgot-password">Forgot password?</a>
-            <button type="submit">Login</button>
+            <button type="submit">Entrar</button>
+            <a href="#" class="forgot-password">Esqueceu a palavra-passe?</a>
         </form>
     </div>
 </body>
 </html>
-

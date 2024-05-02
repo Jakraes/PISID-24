@@ -1,66 +1,50 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #283593; /* Dark blue background */
+    font-family: 'Arial', sans-serif;
+    background-color: #283593; /* Ajustado para o tom exato da imagem */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
+    color: #000000;
 }
 
-.login-container {
+.login-container, .form-container {
     background-color: white;
-    padding: 20px;
+    padding: 80px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    width: 300px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3); /* Sombra mais profunda para uma aparência mais sofisticada */
+    width: 360px; /* Ajustado para um melhor ajuste visual */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
 }
 
 .logo-container img {
-    display: block;
-    margin: 0 auto 20px;
-    width: 100px; /* Adjust size accordingly */
+    width: 100px; /* Ajuste para uma aparência mais proporcional */
+    margin-bottom: 20px;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-form label,
-.login-form input,
-.login-form button {
+input[type="text"], input[type="password"], input[type="number"], button {
+    width: 100%;
+    padding: 15px;
     margin-bottom: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    background-color: #F3F3F3;
 }
 
-.login-form input,
-.login-form button {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.login-form button {
-    background-color: #6200ea; /* Purple button */
+button {
+    background-color: #5E35B1;
     color: white;
-    cursor: pointer;
-    border: none;
+    font-weight: bold;
+    cursor:
 }
 
-.remember-me-container {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.remember-me-container input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-.forgot-password {
-    display: block;
-    text-align: right;
-    margin-bottom: 10px;
-    color: #6200ea; /* Matching the button color */
-    text-decoration: none;
+.imagem-circular {
+    width: 100px; /* Ajuste conforme necessário */
+    height: 100px; /* Ajuste conforme necessário */
+        border-radius: 100%;
 }
