@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Registar Experiência - TECH MICE</title>
+    <title>Registrar Experiência - TECH MICE</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,6 +12,8 @@
         </div>
         <h1>Registar Experiência</h1>
         <form action="submit-experience.php" method="post" onsubmit="return confirm('Tem certeza que deseja gravar a experiência?')" class="form-container">
+        <h1>Registrar Experiência</h1>
+        <form action="submit-experience.php" method="post" onsubmit="return confirm('Tem certeza que deseja gravar a experiência?')">
             <input type="text" id="descricao" name="descricao" placeholder="Descrição da experiência" required>
             <input type="number" id="numero-ratos" name="numero-ratos" placeholder="Número de Ratos" required>
             <input type="number" id="limite-ratos-sala" name="limite-ratos-sala" placeholder="Limite de Ratos por Sala" required>
@@ -25,12 +27,5 @@
             </div>
         </form>
     </div>
-
-    <script>
-        function confirmSubmit() {
-            return confirm('Tem certeza que deseja gravar a experiência?');
-        }
-    </script>
 </body>
 </html>
-
