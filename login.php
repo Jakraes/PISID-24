@@ -1,48 +1,78 @@
 <?php
-/*** mysql hostname ***/
+session_start();
+
 $hostname = 'localhost';
-
-/*** mysql username ***/
 $username = 'root';
-
-/*** mysql password ***/
 $password = '';
-
 $database = 'pisid';
 
-// Establishing the connection
-$conn = mysqli_connect($hostname, $username, $password, $database);
+$username_not_found = false;
 
-// Check if the connection was successful
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if(isset($_COOKIE['username'])) {
+    header("Location: experience_list.php");
+    exit();
 }
 
-// Retrieve the username from the form
-if(isset($_POST['username'])){
-    $username = $_POST['username'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $conn = mysqli_connect($hostname, $username, $password, $database);
 
-    // Query to check if the username exists in the database
-    $query = "SELECT * FROM utilizador WHERE Nome = '$username'";
-    $result = mysqli_query($conn, $query);
-
-    // Check if the query was successful
-    if ($result) {
-        // Check if any rows were returned
-        if(mysqli_num_rows($result) > 0) {
-            // Set a cookie with the username
-            setcookie("techmice_user", $username);
-            echo "Username found in the database!";
-            // Redirect the user to another page
-            exit();
-        } else {
-            echo "Username not found in the database!";
-        }
-    } else {
-        echo "Error executing query: " . mysqli_error($conn);
+    if (!$conn) {
+        die("Conexão falhada: " . mysqli_connect_error());
     }
-}
 
-// Close the connection
-mysqli_close($conn);
+    if(isset($_POST['username'])){
+        $username = $_POST['username'];
+
+        $query = "SELECT * FROM utilizador WHERE Nome = '$username'";
+        $result = mysqli_query($conn, $query);
+
+        if ($result) {
+            if(mysqli_num_rows($result) > 0) {
+                setcookie("username", $username);
+                header("Location: experience_list.php");
+                exit();
+            } else {
+                $username_not_found = true; // Set the flag to true
+            }
+        } else {
+            echo "Error executing query: " . mysqli_error($conn);
+        }
+    }
+
+    mysqli_close($conn);
+}
 ?>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - TECH MICE</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // JavaScript function to display alert if username is not found
+        <?php if($username_not_found): ?>
+        window.onload = function() {
+            alert("Username not found in the database!");
+        };
+        <?php endif; ?>
+    </script>
+</head>
+<body>
+    <div class="general-container">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
+        </div>
+        <h1>TECH MICE</h1>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" class="form-container">
+            <input type="text" id="username" name="username" placeholder="Nome de utilizador" required>
+            <div class="checkbox-container" style="align-items: left;">
+                <label for="remember-me">Lembrar de mim?</label>
+                <input type="checkbox" id="remember-me" name="remember_me">
+            </div>
+            <button type="submit">Entrar</button>
+            <a href="#" class="forgot-password">Esqueceu a palavra-passe?</a>
+        </form>
+    </div>
+</body>
+</html>
