@@ -5,7 +5,7 @@
         <title>Experience List</title>
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
-    <?php
+<?php
 
 /*** mysql hostname ***/
 $hostname = 'localhost';

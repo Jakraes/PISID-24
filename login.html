@@ -6,17 +6,16 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="general-container"">
+    <div class="general-container">
         <div class="logo-container">
             <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
         </div>
         <h1>TECH MICE</h1>
-        <form action="#" method="post" class="form-container">
+        <form action="login.php" method="post" class="form-container">
             <input type="text" id="username" name="username" placeholder="Nome de utilizador" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
             <div class="checkbox-container" style="align-items: left;">
                 <label for="remember-me">Lembrar de mim?</label>
-                <input type="checkbox" id="remember-me">
+                <input type="checkbox" id="remember-me" name="remember_me">
             </div>
             <button type="submit">Entrar</button>
             <a href="#" class="forgot-password">Esqueceu a palavra-passe?</a>
