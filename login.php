@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: experience_list.php");
                 exit();
             } else {
-                $username_not_found = true; // Set the flag to true
+                $username_not_found = true;
             }
         } else {
             echo "Error executing query: " . mysqli_error($conn);
@@ -50,7 +50,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login - TECH MICE</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        // JavaScript function to display alert if username is not found
         <?php if($username_not_found): ?>
         window.onload = function() {
             alert("Username not found in the database!");
