@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color:#283593; /* Ajustado para o tom exato da imagem */
+    background-color: #283593; /* Ajustado para o tom exato da imagem */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +48,17 @@ body {
     gap: 10px;
 }
 
+.action-buttons button {
+    margin-right: 10px; /* Adiciona uma pequena margem entre os botões */
+    background-color: #5E35B1;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 .checkbox-container {
     display: flex;
     align-items: left;
@@ -55,10 +66,10 @@ body {
     width: 100%;
 }
 
-
 .logo-container img {
     width: 100px; /* Ajuste para uma aparência mais proporcional */
     margin-bottom: 20px;
+    border-radius: 50%; /* Garante que a imagem seja circular */
 }
 
 input[type="text"], input[type="password"], input[type="number"], button {
@@ -74,11 +85,27 @@ button {
     background-color: #5E35B1;
     color: white;
     font-weight: bold;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .imagem-circular {
     width: 100px; /* Ajuste conforme necessário */
     height: 100px; /* Ajuste conforme necessário */
-        border-radius: 100%;
+    border-radius: 100%;
+}
+
+table {
+    width: 100%; /* Ajusta a largura da tabela para ocupar todo o espaço disponível */
+    border-collapse: collapse; /* Remove os espaços entre as bordas das células */
+}
+
+th, td {
+    border: 1px solid #ccc; /* Adiciona bordas cinzas claras para as células */
+    padding: 10px; /* Adiciona padding para alinhar o texto dentro das células */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: start; /* Alinha os botões ao início da célula */
 }
