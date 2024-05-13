@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Experiências - TECH MICE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="general-container">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
+        </div>
+        <h1>Painel de Experiências</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Número de Ratos</th>
+                    <th>Limite Ratos por Sala</th>
+                    <th>Segundos Sem Movimento</th>
+                    <th>Temperatura Ideal</th>
+                    <th>Variação de Temperatura</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Exemplo de linha de dados -->
+                <tr>
+                    <td>1</td>
+                    <td>10</td>
+                    <td>5</td>
+                    <td>20</td>
+                    <td>22°C</td>
+                    <td>2°C</td>
+                    <td style="display: flex; gap: 1em;">
+                        <button onclick="editarExperiencia(1)">Editar</button>
+                        <button onclick="confirmarEIniciarExperiencia(1)">Iniciar Experiência</button>
+                    </td>
+                </tr>
+                <!-- Mais linhas podem ser adicionadas aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function editarExperiencia(id) {
+            window.location.href = 'editform.html?id=' + id;
+        }
+
+        function confirmarEIniciarExperiencia(id) {
+            if (confirm('Deseja iniciar esta experiência?')) {
+                window.location.href = 'exand.html?id=' + id;
+            } else {
+                window.location.href = 'painelex.html';
+            }
+        }
+    </script>
+</body>
+</html>
