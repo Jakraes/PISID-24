@@ -23,19 +23,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST['username'])){
         $username = $_POST['username'];
 
-        $query = "SELECT * FROM utilizador WHERE Nome = '$username'";
+        $query = "SELECT ID, Nome FROM utilizador WHERE Nome = '$username'";
         $result = mysqli_query($conn, $query);
 
         if ($result) {
             if(mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $user_id = $row['ID'];
+
                 setcookie("username", $username);
+                setcookie("user_id", $user_id);
+
                 header("Location: experience_list.php");
                 exit();
             } else {
                 $username_not_found = true;
             }
         } else {
-            echo "Error executing query: " . mysqli_error($conn);
+            echo "Erro ao executar a consulta: " . mysqli_error($conn);
         }
     }
 
@@ -52,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script>
         <?php if($username_not_found): ?>
         window.onload = function() {
-            alert("Username not found in the database!");
+            alert("User não existe!");
         };
         <?php endif; ?>
     </script>
