@@ -1,6 +1,17 @@
 <?php
 session_start();
 
+if(isset($_POST['logout'])) {
+    setcookie('username', '', time() - 3600); // Remove username cookie
+    header("Location: login.php");
+    exit();
+}
+
+if(!isset($_COOKIE['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
@@ -14,6 +25,43 @@ if (!$conn) {
 
 $query = "SELECT * FROM experiencia";
 $result = mysqli_query($conn, $query);
+
+// Check if there are ongoing experiences
+$noRunningExperiences = true;
+if ($result && mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        if ($row['Estado'] === 'A Decorrer') {
+            $noRunningExperiences = false;
+            break;
+        }
+    }
+}
+
+mysqli_data_seek($result, 0); // Reset pointer to the beginning
+
+// Handle interromper action if ID is provided
+if (isset($_GET['action']) && $_GET['action'] === 'interromper' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "UPDATE experiencia SET Estado = 'Interrompida' WHERE ID = $id";
+    if (mysqli_query($conn, $query)) {
+        header("Location: painelex.php");
+        exit(); // Terminate script after redirect
+    } else {
+        echo "Erro ao interromper a experiência: " . mysqli_error($conn);
+    }
+}
+
+// Handle iniciar action if ID is provided
+if (isset($_GET['action']) && $_GET['action'] === 'iniciar' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $query = "UPDATE experiencia SET Estado = 'A Decorrer' WHERE ID = $id";
+    if (mysqli_query($conn, $query)) {
+        header("Location: painelex.php");
+        exit(); // Terminate script after redirect
+    } else {
+        echo "Erro ao iniciar a experiência: " . mysqli_error($conn);
+    }
+}
 
 mysqli_close($conn);
 ?>
@@ -31,6 +79,9 @@ mysqli_close($conn);
             <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
         </div>
         <h1>Painel de Experiências</h1>
+        <form method="post" style="position: absolute; top: 10px; left: 10px;">
+            <button type="submit" name="logout">Logout</button>
+        </form>
         <table>
             <thead>
                 <tr>
@@ -56,10 +107,38 @@ mysqli_close($conn);
                         echo "<td>" . $row['Variacao_Temperatura_Maxima'] . "</td>";
                         echo "<td style='display: flex; gap: 1em;'>";
 
-                        // Check if the experience is ongoing and add buttons accordingly
-                        if ($row['Estado'] == 'A Decorrer') {
-                            echo "<button onclick='editarExperiencia(" . $row['ID'] . ")'>Editar</button>";
-                            echo "<button onclick='confirmarEIniciarExperiencia(" . $row['ID'] . ")'>Iniciar Experiência</button>";
+                        // Determine which buttons to display based on the Estado
+                        switch ($row['Estado']) {
+                            case 'Aguarda Início':
+                                // Edit button for Aguarda Início
+                                echo "<form method='get' action='editform.php'>";
+                                echo "<input type='hidden' name='id' value='" . $row['ID'] . "'>";
+                                echo "<button type='submit'>Editar</button>";
+                                echo "</form>";
+                                
+                                // Iniciar Experiência button
+                                if ($noRunningExperiences) {
+                                    echo "<button onclick='confirmarEIniciarExperiencia(" . $row['ID'] . ")' style=\"background-color: #49DF00\">Iniciar Experiência</button>";
+                                } else {
+                                    echo "<button disabled style=\"background-color: #FFD205\">A aguardar...</button>";
+                                }
+                                break;
+                            case 'A Decorrer':
+                                echo "<button onclick='interromperExperiencia(" . $row['ID'] . ")' style=\"background-color: #DF0000\">Interromper</button>";
+                                // Detalhes button for experiences with Estado = A Decorrer
+                                echo "<button onclick='viewDetails(" . $row['ID'] . ")'>Detalhes</button>";
+                                break;
+                            case 'Interrompida':
+                            case 'Finalizada':
+                                // Repetir button for Interrompida and Finalizada
+                                echo "<form method='get' action='repeat.php'>";
+                                echo "<input type='hidden' name='id' value='" . $row['ID'] . "'>";
+                                echo "<button type='submit'>Repetir</button>";
+                                echo "</form>";
+                                break;
+                            default:
+                                // Do nothing or add specific actions for other states
+                                break;
                         }
 
                         echo "</td>";
@@ -71,19 +150,28 @@ mysqli_close($conn);
                 ?>
             </tbody>
         </table>
+        
+        <!-- Button to redirect to formex.php -->
+        <button onclick="window.location.href = 'formex.php';">Criar Experiência</button>
     </div>
 
     <script>
-        function editarExperiencia(id) {
-            window.location.href = 'editform.php?id=' + id;
-        }
-
         function confirmarEIniciarExperiencia(id) {
             if (confirm('Deseja iniciar esta experiência?')) {
-                window.location.href = 'exand.php?id=' + id;
+                window.location.href = '<?php echo $_SERVER["PHP_SELF"] . "?action=iniciar&id="; ?>' + id;
             } else {
                 window.location.href = 'painelex.php';
             }
+        }
+
+        function interromperExperiencia(id) {
+            if (confirm('Deseja interromper esta experiência?')) {
+                window.location.href = '<?php echo $_SERVER["PHP_SELF"] . "?action=interromper&id="; ?>' + id;
+            }
+        }
+
+        function viewDetails(id) {
+            window.location.href = 'exand.php?id=' + id;
         }
     </script>
 </body>

@@ -9,7 +9,7 @@ $database = 'pisid';
 $username_not_found = false;
 
 if(isset($_COOKIE['username'])) {
-    header("Location: experience_list.php");
+    header("Location: painelex.php");
     exit();
 }
 
