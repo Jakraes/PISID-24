@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Execução da Experiência - TECH MICE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="general-container">
+        <div class="logo-container">
+            <img src="logo.jpeg" alt="Logotipo TECH MICE" class="imagem-circular">
+        </div>
+        <h1>Detalhes da Experiência em Execução</h1>
+        <div class="form-container">
+            <p><strong>Descrição:</strong> Teste de comportamento.</p>
+            <p><strong>Número de Ratos:</strong> 10</p>
+            <p><strong>Limite de Ratos por Sala:</strong> 5</p>
+            <p><strong>Segundos Sem Movimento:</strong> 2</p>
+            <p><strong>Temperatura Ideal:</strong> 25°C</p>
+            <p><strong>Variação de Temperatura Máxima:</strong> 3°C</p>
+        </div>
+        <h2>Alertas da Experiência</h2>
+        <div class="alerts-container">
+            <div class="alert yellow">Alerta: Temperatura excedeu o limite máximo!</div>
+            <div class="alert ">Informação: Sistema de ventilação ativado.</div>
+            <div class="alert red">Alerta Crítico: Um dos ratos não está se movendo.</div>
+            <div class="alert ">Informação: Dados sendo coletados.</div>
+        </div>
+        <div class="action-buttons">
+            <button onclick="confirmarETerminarExperiencia()">Terminar Experiência</button>
+        </div>
+    </div>
+
+    <script>
+        function confirmarETerminarExperiencia() {
+            if (confirm('Deseja realmente terminar esta experiência?')) {
+                window.location.href = 'painelex.html';
+            }
+        }
+    </script>
+</body>
+</html>
